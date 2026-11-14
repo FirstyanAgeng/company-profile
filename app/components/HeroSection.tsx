@@ -9,7 +9,6 @@ import {
   ActivityIcon,
   CheckCircle2Icon,
   ArrowRightBoldIcon,
-  BuildingIcon,
   LockIcon,
 } from "./Icons";
 import { corporateOverview } from "../data/comproData";

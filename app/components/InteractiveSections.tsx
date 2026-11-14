@@ -3,23 +3,10 @@
 import React, { useState } from "react";
 import {
   HospitalIcon,
-  StethoscopeIcon,
-  CheckBoxIcon,
   CheckCircle2Icon,
   TrendingUpIcon,
-  UsersIcon,
-  ShieldCheckIcon,
-  LaptopIcon,
-  AwardIcon,
-  PresentationIcon,
-  ActivityIcon,
-  BuildingIcon,
-  ChartBarIcon,
-  ScaleIcon,
   ChevronDownIcon,
   LockIcon,
-  SparklesIcon,
-  ClockIcon,
   ArrowRightBoldIcon,
 } from "./Icons";
 import {
@@ -27,9 +14,7 @@ import {
   methodologyPhases,
   corporateValues,
   businessImpacts,
-  clientProfiles,
   faqList,
-  corporateOverview,
 } from "../data/comproData";
 
 export default function InteractiveSections() {
@@ -761,15 +746,15 @@ export default function InteractiveSections() {
                   1. Status &amp; Kondisi Fasilitas:
                 </label>
                 <div className="space-y-2 mb-6">
-                  {[
+                  {([
                     { id: "baru", label: "Pendirian RS Baru (Dari Nol)", desc: "Mulai dari tanah, perizinan, dan studi kelayakan" },
                     { id: "eksisting", label: "Rumah Sakit Berjalan (Eksisting)", desc: "Restrukturisasi, efisiensi biaya & bridging digital" },
                     { id: "upgrade", label: "Peningkatan Klinik ke RS (Upgrade)", desc: "Klinik Pratama/Utama menuju RS Tipe D/C" },
-                  ].map((item) => (
+                  ] as const).map((item) => (
                     <button
                       key={item.id}
                       type="button"
-                      onClick={() => setAdvisorFacilityType(item.id as any)}
+                      onClick={() => setAdvisorFacilityType(item.id)}
                       className={`w-full p-3 rounded-xl text-left transition-all border flex items-start gap-3 ${
                         advisorFacilityType === item.id
                           ? "bg-lime-500/10 border-lime-400 text-white"
@@ -793,15 +778,15 @@ export default function InteractiveSections() {
                   2. Kapasitas / Skala Fasilitas:
                 </label>
                 <div className="grid grid-cols-3 gap-2">
-                  {[
+                  {([
                     { id: "kecil", label: "< 50 Bed", sub: "Tipe D / Klinik" },
                     { id: "menengah", label: "50 - 150 Bed", sub: "Tipe C" },
                     { id: "besar", label: "> 150 Bed", sub: "Tipe B / A" },
-                  ].map((scale) => (
+                  ] as const).map((scale) => (
                     <button
                       key={scale.id}
                       type="button"
-                      onClick={() => setAdvisorBedScale(scale.id as any)}
+                      onClick={() => setAdvisorBedScale(scale.id)}
                       className={`p-2.5 rounded-xl text-center border transition-all ${
                         advisorBedScale === scale.id
                           ? "bg-lime-500 text-neutral-950 font-bold border-lime-400"
