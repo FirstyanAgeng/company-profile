@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Konsultan Manajemen Rumah Sakit | Solusi Perencanaan & Operasional RS",
+  title: "Konsultan Manajemen Rumah Sakit | Healthcare Advisory & Development",
   description:
-    "Konsultan Manajemen Rumah Sakit terkemuka di Indonesia. Melayani Studi Kelayakan, Master Plan, Efisiensi Operasional, SIMRS, dan Pelatihan Service Excellence.",
+    "Mitra strategis perencanaan, pembangunan, dan optimalisasi rumah sakit di Indonesia. Melayani Studi Kelayakan, Master Plan, Transformasi Lean Healthcare, SIMRS SatuSehat, dan Akreditasi Paripurna.",
 };
 
 export default function RootLayout({

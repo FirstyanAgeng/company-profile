@@ -1,165 +1,303 @@
-import React from "react";
-import Image from "next/image";
-import { HospitalIcon, CheckBoxIcon, TrendingUpIcon, ShieldCheckIcon } from "./Icons";
+"use client";
+
+import React, { useState } from "react";
+import {
+  HospitalIcon,
+  ShieldCheckIcon,
+  TrendingUpIcon,
+  UsersIcon,
+  ActivityIcon,
+  CheckCircle2Icon,
+  ArrowRightBoldIcon,
+  BuildingIcon,
+  LockIcon,
+} from "./Icons";
+import { corporateOverview } from "../data/comproData";
 
 export default function HeroSection() {
+  const [activeAudience, setActiveAudience] = useState<"investor" | "direksi" | "yayasan">("investor");
+
+  const audienceInsights = {
+    investor: {
+      badge: "Peluang Investor & Pemilik Modal",
+      headline: "Bisnis Perumahsakitan yang Menjanjikan Tanpa Beban Teknis",
+      text: "Bisnis perumahsakitan saat ini adalah investasi yang sangat prospektif apabila dijalankan dengan benar tanpa melupakan sisi sosialnya. Pemilik modal cukup fokus pada fungsi pengawasan dan komunikasi strategis bersama konsultan tanpa terbebani kerumitan teknis di lapangan.",
+      tag: "Pengawasan Transparan & ROI Sehat"
+    },
+    direksi: {
+      badge: "Direksi & Manajemen Rumah Sakit",
+      headline: "Optimalisasi Operasional, Efisiensi Biaya & Kepatuhan Mutu",
+      text: "Mendiagnosis inefisiensi, memangkas antrean, menstandarisasi SOP dan Clinical Pathway, serta mengintegrasikan SIMRS/RME berstandar SatuSehat Kemenkes dan BPJS Kesehatan guna meningkatkan mutu layanan dan kepuasan pasien.",
+      tag: "Lean Healthcare & Zero Error"
+    },
+    yayasan: {
+      badge: "Yayasan & Peningkatan Status Klinik",
+      headline: "Studi Kelayakan & Roadmap Naik Kelas Menuju RS Tipe D/C",
+      text: "Mendampingi proses perizinan, kesesuaian tata ruang medis, pemenuhan rasio ketenagaan minimal, serta perancangan master plan 5 tahun agar proses peningkatan status berjalan mulus dan minim risiko.",
+      tag: "Master Plan & Feasibility Study"
+    }
+  };
+
+  const current = audienceInsights[activeAudience];
+
   return (
-    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-gradient-to-b from-neutral-900 via-neutral-950 to-neutral-900 text-white">
+    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-gradient-to-b from-neutral-950 via-neutral-900 to-neutral-950 text-white">
       {/* Decorative ambient background glows */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-lime-500/10 blur-[130px] rounded-full pointer-events-none" />
-      <div className="absolute -top-10 right-10 w-96 h-96 bg-emerald-600/10 blur-[100px] rounded-full pointer-events-none" />
+      <div className="absolute top-12 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-lime-500/10 blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute top-24 right-10 w-96 h-96 bg-emerald-600/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-80 h-80 bg-cyan-600/10 blur-[120px] rounded-full pointer-events-none" />
+
+      {/* Subtle grid pattern background */}
+      <div
+        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
+          backgroundSize: "32px 32px",
+        }}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column: Heading and Value Propositions */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#46731d]/30 text-lime-400 border border-[#46731d] mb-4">
+            
+            {/* Top Corporate Badge */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-lime-400/10 text-lime-400 border border-lime-400/25 mb-5 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-lime-400 animate-pulse" />
-              Company Profile Resmi Konsultan RS
+              <span>Healthcare Management Advisory &amp; Hospital Development</span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
-              KONSULTAN <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 via-emerald-300 to-green-400">MANAJEMEN</span> RUMAH SAKIT
+            {/* Main Powerful Title */}
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.12]">
+              Mitra Strategis <span className="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 via-emerald-300 to-green-400">Perencanaan &amp; Tata Kelola</span> Rumah Sakit
             </h1>
 
-            <p className="mt-4 text-base sm:text-lg text-neutral-300 leading-relaxed max-w-2xl">
-              Membantu melakukan konsultasi dalam <span className="text-lime-300 font-semibold">perencanaan, pelaksanaan, pengorganisasian, serta pengawasan manajemen RS</span> secara benar, efisien, dan menguntungkan tanpa melupakan sisi sosialnya.
+            {/* Subtitle / Core Vision */}
+            <p className="mt-5 text-base sm:text-lg text-neutral-300 leading-relaxed max-w-2xl font-normal">
+              Membantu melakukan konsultasi dalam <span className="text-lime-300 font-semibold">perencanaan, pelaksanaan, pengorganisasian, serta pengawasan manajemen RS</span> secara benar, efisien, dan berkelanjutan tanpa melupakan sisi sosial kemanusiaan.
             </p>
 
-            {/* Quick Core Highlights from Slides */}
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full max-w-2xl">
-              <div className="flex items-start gap-2.5 bg-neutral-900/80 p-3 rounded-lg border border-neutral-800">
-                <span className="text-lime-400 text-lg leading-none shrink-0 font-bold">⇒</span>
-                <span className="text-xs sm:text-sm text-neutral-200">
-                  <strong>Peluang Menjanjikan:</strong> Pemilik modal/investor fokus pengawasan tanpa beban teknis operasional lapangan.
-                </span>
+            {/* Interactive Audience Switcher */}
+            <div className="mt-8 w-full max-w-2xl">
+              <div className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2.5 flex items-center justify-between">
+                <span>Pilih Fokus Kebutuhan Anda:</span>
+                <span className="text-[11px] text-lime-400 font-mono">Solusi Disesuaikan</span>
+              </div>
+              <div className="grid grid-cols-3 gap-2 p-1.5 bg-neutral-900/90 rounded-xl border border-neutral-800">
+                <button
+                  type="button"
+                  onClick={() => setActiveAudience("investor")}
+                  className={`px-3 py-2 text-xs font-bold rounded-lg transition-all ${
+                    activeAudience === "investor"
+                      ? "bg-lime-500 text-neutral-950 shadow-md"
+                      : "text-neutral-300 hover:text-white hover:bg-neutral-800/60"
+                  }`}
+                >
+                  Investor &amp; Owner
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveAudience("direksi")}
+                  className={`px-3 py-2 text-xs font-bold rounded-lg transition-all ${
+                    activeAudience === "direksi"
+                      ? "bg-lime-500 text-neutral-950 shadow-md"
+                      : "text-neutral-300 hover:text-white hover:bg-neutral-800/60"
+                  }`}
+                >
+                  Direksi RS Eksisting
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveAudience("yayasan")}
+                  className={`px-3 py-2 text-xs font-bold rounded-lg transition-all ${
+                    activeAudience === "yayasan"
+                      ? "bg-lime-500 text-neutral-950 shadow-md"
+                      : "text-neutral-300 hover:text-white hover:bg-neutral-800/60"
+                  }`}
+                >
+                  Yayasan / Upgrade
+                </button>
               </div>
 
-              <div className="flex items-start gap-2.5 bg-neutral-900/80 p-3 rounded-lg border border-neutral-800">
-                <span className="text-lime-400 text-lg leading-none shrink-0 font-bold">⇒</span>
-                <span className="text-xs sm:text-sm text-neutral-200">
-                  <strong>Solusi Permanen:</strong> Pendampingan menyeluruh sesuai standar aturan pemerintah dan kaidah keilmuan.
-                </span>
+              {/* Dynamic Insight Box */}
+              <div className="mt-3.5 p-4 sm:p-5 rounded-xl bg-neutral-900/90 border border-neutral-800/90 shadow-lg relative overflow-hidden">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-extrabold text-lime-400 uppercase tracking-wide">
+                    {current.badge}
+                  </span>
+                  <span className="text-[10px] font-semibold text-emerald-300 bg-emerald-950/60 border border-emerald-800/50 px-2 py-0.5 rounded">
+                    {current.tag}
+                  </span>
+                </div>
+                <h3 className="text-sm sm:text-base font-bold text-white mb-1.5">
+                  {current.headline}
+                </h3>
+                <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
+                  {current.text}
+                </p>
               </div>
             </div>
 
-            {/* CTAs */}
-            <div className="mt-8 flex flex-wrap gap-4 items-center">
+            {/* Action CTAs */}
+            <div className="mt-8 flex flex-wrap gap-4 items-center w-full">
               <a
-                href="#slide-viewer"
-                className="px-6 py-3.5 rounded-xl bg-lime-500 hover:bg-lime-400 text-neutral-950 font-bold text-sm sm:text-base shadow-lg shadow-lime-500/25 transition-all transform hover:-translate-y-0.5 flex items-center gap-2"
+                href="#konsultasi"
+                className="px-7 py-3.5 rounded-xl bg-lime-500 hover:bg-lime-400 text-neutral-950 font-bold text-sm sm:text-base shadow-lg shadow-lime-500/25 transition-all transform hover:-translate-y-0.5 flex items-center gap-2"
               >
-                <span>Lihat 6 Slide Compro Asli</span>
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-                </svg>
+                <span>Jadwalkan Konsultasi Awal</span>
+                <ArrowRightBoldIcon className="w-4 h-4 text-neutral-950" />
               </a>
 
               <a
                 href="#layanan"
-                className="px-6 py-3.5 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-white font-semibold text-sm sm:text-base border border-neutral-700 transition-all flex items-center gap-2"
+                className="px-6 py-3.5 rounded-xl bg-neutral-800/80 hover:bg-neutral-800 text-white font-semibold text-sm sm:text-base border border-neutral-700/80 transition-all flex items-center gap-2"
               >
                 <span>Ruang Lingkup Jasa</span>
               </a>
 
               <a
-                href="#konsultasi"
-                className="px-6 py-3.5 rounded-xl bg-transparent hover:bg-neutral-900 text-lime-400 border border-lime-400/40 font-semibold text-sm sm:text-base transition-all"
+                href="#metodologi"
+                className="px-5 py-3.5 rounded-xl bg-transparent hover:bg-neutral-800/40 text-neutral-300 hover:text-lime-400 text-sm font-semibold transition-all"
               >
-                <span>Mulai Konsultasi</span>
+                <span>Metodologi 7 Tahap →</span>
               </a>
             </div>
 
-            {/* Micro proof badges */}
-            <div className="mt-10 pt-6 border-t border-neutral-800/80 w-full grid grid-cols-3 gap-4 text-center sm:text-left">
-              <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-lime-400">100%</div>
-                <div className="text-[11px] sm:text-xs text-neutral-400">Kepatuhan Regulasi RS</div>
-              </div>
-              <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-white">7 Tahap</div>
-                <div className="text-[11px] sm:text-xs text-neutral-400">Roadmap Master Plan</div>
-              </div>
-              <div>
-                <div className="text-2xl sm:text-3xl font-extrabold text-emerald-400">End-to-End</div>
-                <div className="text-[11px] sm:text-xs text-neutral-400">Hardware, SIMRS & SDM</div>
-              </div>
+            {/* Confidentiality notice */}
+            <div className="mt-4 flex items-center gap-2 text-xs text-neutral-400">
+              <LockIcon className="w-3.5 h-3.5 text-lime-400 shrink-0" />
+              <span>Diskusi awal dilindungi Perjanjian Kerahasiaan (NDA) &amp; tanpa biaya komitmen.</span>
             </div>
+
+            {/* Performance Metrics Stats */}
+            <div className="mt-10 pt-6 border-t border-neutral-800/90 w-full grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {corporateOverview.stats.map((item, idx) => (
+                <div key={idx} className="flex flex-col">
+                  <span className="text-2xl sm:text-3xl font-black text-lime-400 tracking-tight">
+                    {item.value}
+                  </span>
+                  <span className="text-xs font-bold text-neutral-200 mt-0.5">
+                    {item.label}
+                  </span>
+                  <span className="text-[11px] text-neutral-400 mt-0.5 leading-snug">
+                    {item.detail}
+                  </span>
+                </div>
+              ))}
+            </div>
+
           </div>
 
-          {/* Right Column: Visual Card Showcase referencing slide 1 & slide 2 */}
+          {/* Right Column: Architectural Executive Card */}
           <div className="lg:col-span-5 relative">
             <div className="relative mx-auto max-w-md lg:max-w-none">
               
-              {/* Outer decorative card frame styled after the lime slide palette */}
-              <div className="relative rounded-2xl overflow-hidden p-1 bg-gradient-to-br from-[#77db2c] via-[#a8f152] to-[#efffe1] shadow-2xl shadow-green-950/40">
-                <div className="bg-neutral-900 rounded-[14px] p-5 sm:p-6 text-neutral-100 flex flex-col gap-4">
-                  
-                  {/* Top hospital preview banner */}
-                  <div className="relative h-48 w-full rounded-xl overflow-hidden border border-neutral-700">
-                    <Image
-                      src="/compro/slide1_target.jpg"
-                      alt="Modern Hospital Architecture"
-                      fill
-                      className="object-cover object-left"
-                      priority
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                      <span className="text-xs font-bold text-white bg-black/60 px-2 py-1 rounded backdrop-blur-md">
-                        Rancang Bangun & Manajemen RS
-                      </span>
-                      <span className="text-[10px] font-mono text-lime-400 bg-lime-950/80 border border-lime-800 px-2 py-0.5 rounded">
-                        Dokumen Compro
+              {/* Glow backdrop behind card */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-lime-500/20 via-emerald-500/10 to-teal-500/20 rounded-3xl blur-xl" />
+
+              <div className="relative rounded-2xl bg-neutral-900 border border-neutral-700/80 p-6 sm:p-7 shadow-2xl flex flex-col gap-6">
+                
+                {/* Header of card */}
+                <div className="flex items-center justify-between pb-4 border-b border-neutral-800">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-lime-500/10 text-lime-400 border border-lime-500/20 flex items-center justify-center">
+                      <HospitalIcon className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h2 className="text-sm font-bold text-white leading-tight">
+                        Tata Kelola Manajemen Terpadu
+                      </h2>
+                      <span className="text-[11px] text-lime-400 font-mono">
+                        Hospital Operating System
                       </span>
                     </div>
                   </div>
+                  <span className="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    Standar Paripurna
+                  </span>
+                </div>
 
-                  {/* Highlight card in signature olive green */}
-                  <div className="bg-[#46731d] text-white p-4 rounded-xl shadow-md border border-[#395e17]">
-                    <div className="text-xs uppercase font-extrabold tracking-wider text-lime-200 mb-1">
-                      Tata Nilai Perusahaan
+                {/* Core Corporate Value Statement Box */}
+                <div className="bg-gradient-to-br from-[#274811] to-[#152e08] text-white p-5 rounded-xl border border-lime-600/30 shadow-inner">
+                  <div className="flex items-center justify-between text-[11px] font-extrabold uppercase tracking-wider text-lime-300 mb-2">
+                    <span>Tata Nilai Perusahaan (Core Value)</span>
+                    <ShieldCheckIcon className="w-4 h-4 text-lime-300" />
+                  </div>
+                  <p className="text-xs sm:text-sm font-medium leading-relaxed italic text-lime-50">
+                    &quot;Setiap insan Rumah Sakit senantiasa memberikan pelayanan yang terbaik kepada Pelanggan, Perusahaan (Stakeholder), serta Pemilik Perusahaan (Owner).&quot;
+                  </p>
+                </div>
+
+                {/* 3 Pillars Overview */}
+                <div className="space-y-3">
+                  <span className="text-xs font-bold text-neutral-300 uppercase tracking-wider block">
+                    3 Pilar Integrasi Ekosistem RS:
+                  </span>
+
+                  <div className="p-3 rounded-lg bg-neutral-950/70 border border-neutral-800 flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-lime-500/10 text-lime-400 flex items-center justify-center shrink-0 mt-0.5">
+                      <UsersIcon className="w-4 h-4" />
                     </div>
-                    <p className="text-xs sm:text-sm font-medium leading-relaxed italic">
-                      &quot;Setiap karyawan Rumah Sakit senantiasa memberikan pelayanan yang terbaik kepada pelanggan dan Perusahaan (stakeholder) serta Pemilik Perusahaan (Owner)&quot;
-                    </p>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold text-white">01. Pelanggan (Pasien)</span>
+                        <span className="text-[10px] text-lime-400 font-semibold">Service Excellence</span>
+                      </div>
+                      <p className="text-[11px] text-neutral-400 mt-0.5 leading-snug">
+                        Fokus keselamatan pasien, keramahan nakes, empati, dan kepastian tarif.
+                      </p>
+                    </div>
                   </div>
 
-                  {/* 3 Pillars Quick List */}
-                  <div className="space-y-2 pt-1">
-                    <div className="flex items-center gap-2 text-xs text-neutral-300">
-                      <div className="w-4 h-4 text-lime-400 shrink-0">
-                        <CheckBoxIcon className="w-full h-full" />
-                      </div>
-                      <span>Studi Kelayakan RS yang Terdokumentasi Benar</span>
+                  <div className="p-3 rounded-lg bg-neutral-950/70 border border-neutral-800 flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 mt-0.5">
+                      <ActivityIcon className="w-4 h-4" />
                     </div>
-                    <div className="flex items-center gap-2 text-xs text-neutral-300">
-                      <div className="w-4 h-4 text-lime-400 shrink-0">
-                        <CheckBoxIcon className="w-full h-full" />
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold text-white">02. Stakeholder (Nakes &amp; Tim)</span>
+                        <span className="text-[10px] text-emerald-400 font-semibold">SOP &amp; Budaya Kerja</span>
                       </div>
-                      <span>Sistem Operasional & SIMRS Modern Terintegrasi</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-xs text-neutral-300">
-                      <div className="w-4 h-4 text-lime-400 shrink-0">
-                        <CheckBoxIcon className="w-full h-full" />
-                      </div>
-                      <span>Workshop & Pendampingan Patient Safety & Akreditasi</span>
+                      <p className="text-[11px] text-neutral-400 mt-0.5 leading-snug">
+                        Lingkungan kerja profesional, sistem remunerasi adil, dan continuous training.
+                      </p>
                     </div>
                   </div>
 
+                  <div className="p-3 rounded-lg bg-neutral-950/70 border border-neutral-800 flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center shrink-0 mt-0.5">
+                      <TrendingUpIcon className="w-4 h-4" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold text-white">03. Pemilik Modal (Owner)</span>
+                        <span className="text-[10px] text-cyan-400 font-semibold">Akuntabilitas Finansial</span>
+                      </div>
+                      <p className="text-[11px] text-neutral-400 mt-0.5 leading-snug">
+                        Pelaporan berkala transparan, efisiensi CAPEX/OPEX, dan imbal hasil sehat.
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
 
-              {/* Floating Badge */}
-              <div className="absolute -bottom-5 -left-5 bg-neutral-900 border border-lime-500/50 rounded-xl p-3 shadow-xl flex items-center gap-3 backdrop-blur-md">
-                <div className="w-10 h-10 rounded-lg bg-lime-500/20 text-lime-400 flex items-center justify-center font-bold">
-                  <TrendingUpIcon className="w-5 h-5" />
+                {/* Bottom capability indicators */}
+                <div className="pt-2 border-t border-neutral-800 flex items-center justify-between text-[11px] text-neutral-400">
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2Icon className="w-4 h-4 text-lime-400" />
+                    <span>Feasibility Study Teruji</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2Icon className="w-4 h-4 text-lime-400" />
+                    <span>SatuSehat Ready</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle2Icon className="w-4 h-4 text-lime-400" />
+                    <span>Akreditasi KARS</span>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-xs font-bold text-white">Efisiensi & Profitabilitas</div>
-                  <div className="text-[11px] text-neutral-400">Pertumbuhan Rumah Sakit Terukur</div>
-                </div>
+
               </div>
 
             </div>
